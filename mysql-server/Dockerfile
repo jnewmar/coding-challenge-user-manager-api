@@ -1,1 +1,0 @@
-FROM migs/mysql-5.7
