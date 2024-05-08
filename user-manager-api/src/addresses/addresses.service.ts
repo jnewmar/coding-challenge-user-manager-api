@@ -11,22 +11,27 @@ export class AddressesService {
   constructor(
     @InjectRepository(Address)
     private addressRepository: Repository<Address>,
-    private UsersService: UsersService
+    private UsersService: UsersService,
   ) {}
-  
-  async findAll(userId: number) : Promise<Address[]>{
-    return await this.addressRepository.find({ where: { user: { id: userId } } });
+
+  async findAll(userId: number): Promise<Address[]> {
+    return await this.addressRepository.find({
+      where: { user: { id: userId } },
+    });
   }
 
   async findOne(id: number): Promise<Address | null> {
     return await this.addressRepository.findOneBy({ id });
   }
 
-  async create(userId:number, createAddressDto: CreateAddressDto): Promise<Address> {
+  async create(
+    userId: number,
+    createAddressDto: CreateAddressDto,
+  ): Promise<Address> {
     const newAddress = this.addressRepository.create(createAddressDto);
     newAddress.user = await this.UsersService.findOne(+userId);
     await this.addressRepository.save(newAddress);
-    delete(newAddress.user);
+    delete newAddress.user;
     return newAddress;
   }
 

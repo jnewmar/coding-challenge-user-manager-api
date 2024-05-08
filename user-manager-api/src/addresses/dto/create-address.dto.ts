@@ -36,4 +36,4 @@ export class CreateAddressDto {
 export class CreateAddressDtoWithId extends CreateAddressDto {
   @ApiProperty({ description: 'The id of the address' })
   id: number;
-};
+}

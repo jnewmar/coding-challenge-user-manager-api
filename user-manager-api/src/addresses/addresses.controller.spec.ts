@@ -13,7 +13,7 @@ describe('AddressesController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AddressesController],
       providers: [
-        { 
+        {
           provide: AddressesService,
           useValue: {
             findAll: jest.fn().mockResolvedValue([]),
@@ -23,7 +23,7 @@ describe('AddressesController', () => {
             update: jest.fn().mockResolvedValue({}),
           },
         },
-        { 
+        {
           provide: UsersService,
           useValue: {
             findAll: jest.fn().mockResolvedValue([]),
@@ -47,8 +47,14 @@ describe('AddressesController', () => {
 
   describe('create', () => {
     it('should create an address', async () => {
-      const addressDto = { logradouro: 'Test Street', numero: "1", cidade: 'Test City', estado: 'TS', bairro: '12345' };
-      const result = { id: 1, user: {} as User , ...addressDto };
+      const addressDto = {
+        logradouro: 'Test Street',
+        numero: '1',
+        cidade: 'Test City',
+        estado: 'TS',
+        bairro: '12345',
+      };
+      const result = { id: 1, user: {} as User, ...addressDto };
       jest.spyOn(addressesService, 'create').mockResolvedValue(result);
 
       expect(await controller.create('1', addressDto)).toBe(result);
@@ -57,7 +63,17 @@ describe('AddressesController', () => {
 
   describe('findAll', () => {
     it('should return an array of addresses', async () => {
-      const result = [{ id: 1, logradouro: 'Test Street', numero: "1", cidade: 'Test City', estado: 'TS', bairro: '12345' , user: {} as User}];
+      const result = [
+        {
+          id: 1,
+          logradouro: 'Test Street',
+          numero: '1',
+          cidade: 'Test City',
+          estado: 'TS',
+          bairro: '12345',
+          user: {} as User,
+        },
+      ];
       jest.spyOn(addressesService, 'findAll').mockResolvedValue(result);
 
       expect(await controller.findAll('1')).toBe(result);
@@ -66,7 +82,14 @@ describe('AddressesController', () => {
 
   describe('update', () => {
     it('should update an address', async () => {
-      const addressDto = {logradouro: 'Test Street', numero: "1", cidade: 'Test City', estado: 'TS', bairro: '12345' , user: {} as User};
+      const addressDto = {
+        logradouro: 'Test Street',
+        numero: '1',
+        cidade: 'Test City',
+        estado: 'TS',
+        bairro: '12345',
+        user: {} as User,
+      };
       const result = { id: 1, ...addressDto };
       jest.spyOn(addressesService, 'update').mockResolvedValue(result);
 

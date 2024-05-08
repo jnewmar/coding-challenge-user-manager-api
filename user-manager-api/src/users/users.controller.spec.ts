@@ -38,7 +38,9 @@ describe('UsersController', () => {
   describe('create', () => {
     it('should call usersService.create with correct parameters', async () => {
       const createUserDto = new CreateUserDto();
-      const serviceSpy = jest.spyOn(service, 'create').mockImplementation(() => Promise.resolve({} as User));
+      const serviceSpy = jest
+        .spyOn(service, 'create')
+        .mockImplementation(() => Promise.resolve({} as User));
 
       await controller.create(createUserDto);
 
@@ -48,7 +50,9 @@ describe('UsersController', () => {
 
   describe('findAll', () => {
     it('should call usersService.findAll', async () => {
-      const serviceSpy = jest.spyOn(service, 'findAll').mockImplementation(() => Promise.resolve({} as User[]));
+      const serviceSpy = jest
+        .spyOn(service, 'findAll')
+        .mockImplementation(() => Promise.resolve({} as User[]));
 
       await controller.findAll();
 
@@ -59,7 +63,9 @@ describe('UsersController', () => {
   describe('findOne', () => {
     it('should call usersService.findOne with correct parameters', async () => {
       const id = '1';
-      const serviceSpy = jest.spyOn(service, 'findOne').mockImplementation(() => Promise.resolve({} as User));
+      const serviceSpy = jest
+        .spyOn(service, 'findOne')
+        .mockImplementation(() => Promise.resolve({} as User));
 
       await controller.findOne(id);
 
@@ -71,7 +77,9 @@ describe('UsersController', () => {
     it('should call usersService.update with correct parameters', async () => {
       const id = '1';
       const updateUserDto = new UpdateUserDto();
-      const serviceSpy = jest.spyOn(service, 'update').mockImplementation(() => Promise.resolve({} as User)); // Fix: Return an empty User object
+      const serviceSpy = jest
+        .spyOn(service, 'update')
+        .mockImplementation(() => Promise.resolve({} as User)); // Fix: Return an empty User object
 
       await controller.update(id, updateUserDto);
 
@@ -82,7 +90,9 @@ describe('UsersController', () => {
   describe('remove', () => {
     it('should call usersService.remove with correct parameters', async () => {
       const id = '1';
-      const serviceSpy = jest.spyOn(service, 'remove').mockImplementation(() => Promise.resolve());
+      const serviceSpy = jest
+        .spyOn(service, 'remove')
+        .mockImplementation(() => Promise.resolve());
 
       await controller.remove(id);
 

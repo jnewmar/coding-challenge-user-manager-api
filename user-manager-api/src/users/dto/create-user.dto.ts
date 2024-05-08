@@ -29,4 +29,4 @@ export class CreateUserDto {
 export class CreateUserDtoWithId extends CreateUserDto {
   @ApiProperty({ description: 'The id of the user' })
   id: number;
-};
+}

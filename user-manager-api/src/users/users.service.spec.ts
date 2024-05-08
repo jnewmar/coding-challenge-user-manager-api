@@ -22,11 +22,11 @@ describe('UsersService', () => {
 
     service = module.get<UsersService>(UsersService);
     repo = module.get<Repository<User>>(getRepositoryToken(User));
-    repo.find =  jest.fn().mockResolvedValue([]);
+    repo.find = jest.fn().mockResolvedValue([]);
     repo.findOneBy = jest.fn().mockResolvedValue({});
     repo.delete = jest.fn().mockResolvedValue({});
-    repo.save =  jest.fn().mockResolvedValue({});
-    repo.update =  jest.fn().mockResolvedValue({});
+    repo.save = jest.fn().mockResolvedValue({});
+    repo.update = jest.fn().mockResolvedValue({});
     repo.create = jest.fn().mockReturnValue(new User());
   });
 
@@ -52,22 +52,25 @@ describe('UsersService', () => {
     expect(spy).toHaveBeenCalledWith(1);
   });
 
-it('should create a user', async () => {
-  const testUser: User = new User();
-  const createUserDto = new CreateUserDto();
-  createUserDto.nome = 'Test User';
-  createUserDto.email = 'test@example.com';
-  createUserDto.nome = 'Test';
-  createUserDto.cpf = '123456789';
-  createUserDto.telefone = '123456789';
+  it('should create a user', async () => {
+    const testUser: User = new User();
+    const createUserDto = new CreateUserDto();
+    createUserDto.nome = 'Test User';
+    createUserDto.email = 'test@example.com';
+    createUserDto.nome = 'Test';
+    createUserDto.cpf = '123456789';
+    createUserDto.telefone = '123456789';
 
-  jest.spyOn(repo, 'save').mockResolvedValue(testUser);
-  expect(await service.create(createUserDto)).toEqual(testUser);
-});
+    jest.spyOn(repo, 'save').mockResolvedValue(testUser);
+    expect(await service.create(createUserDto)).toEqual(testUser);
+  });
 
   it('should update a user', async () => {
     const testUser: User = new User();
-    const updateUserDto = { name: 'Updated User', email: 'updated@example.com' };
+    const updateUserDto = {
+      name: 'Updated User',
+      email: 'updated@example.com',
+    };
     jest.spyOn(repo, 'save').mockResolvedValue(testUser);
     expect(await service.update(1, updateUserDto)).toEqual(testUser);
   });

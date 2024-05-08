@@ -35,5 +35,4 @@ export class UsersService {
     const updatedUser = await this.usersRepository.findOneBy({ id });
     return updatedUser;
   }
-
 }

@@ -25,11 +25,11 @@ describe('AddressesService', () => {
 
     service = module.get<AddressesService>(AddressesService);
     repo = module.get<Repository<Address>>(getRepositoryToken(Address));
-    repo.find =  jest.fn().mockResolvedValue([]);
+    repo.find = jest.fn().mockResolvedValue([]);
     repo.findOneBy = jest.fn().mockResolvedValue({});
     repo.delete = jest.fn().mockResolvedValue({});
-    repo.save =  jest.fn().mockResolvedValue({});
-    repo.update =  jest.fn().mockResolvedValue({});
+    repo.save = jest.fn().mockResolvedValue({});
+    repo.update = jest.fn().mockResolvedValue({});
     repo.create = jest.fn().mockReturnValue(new Address());
 
     userRepo = module.get<Repository<User>>(getRepositoryToken(User));
@@ -67,8 +67,11 @@ describe('AddressesService', () => {
       jest.spyOn(repo, 'save').mockResolvedValue(testAddress);
 
       const newAddress = await service.create(1, {
-        logradouro: 'Test Street', cidade: 'Test City', estado: 'TS', bairro: '12345',
-        numero: '12'
+        logradouro: 'Test Street',
+        cidade: 'Test City',
+        estado: 'TS',
+        bairro: '12345',
+        numero: '12',
       });
       expect(newAddress).toEqual(testAddress);
     });
@@ -88,7 +91,13 @@ describe('AddressesService', () => {
       jest.spyOn(repo, 'preload').mockResolvedValue(testAddress);
       jest.spyOn(repo, 'save').mockResolvedValue(testAddress);
 
-      const updatedAddress = await service.update(1, { logradouro: 'Test Street', numero: "123", cidade: 'Test City', estado: 'TS', bairro: '12345' });
+      const updatedAddress = await service.update(1, {
+        logradouro: 'Test Street',
+        numero: '123',
+        cidade: 'Test City',
+        estado: 'TS',
+        bairro: '12345',
+      });
       expect(updatedAddress).toEqual(testAddress);
     });
   });

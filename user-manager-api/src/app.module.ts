@@ -12,7 +12,7 @@ import { AddressesModule } from './addresses/addresses.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
-      port:  Number(process.env.DB_PORT) || 3306,
+      port: Number(process.env.DB_PORT) || 3306,
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '123456',
       database: process.env.DB_NAME || 'user_manager',
@@ -20,7 +20,7 @@ import { AddressesModule } from './addresses/addresses.module';
       synchronize: true,
     }),
     UsersModule,
-    AddressesModule
+    AddressesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
